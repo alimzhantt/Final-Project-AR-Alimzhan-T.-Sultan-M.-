@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>RoomFit AR</title>
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="https://aframe.io/releases/1.8.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aframe-extras@7.7.0/dist/aframe-extras.min.js"></script>
+
+  <script src="js/catalog.js"></script>
+  <script src="js/placement.js"></script>
+  <script src="js/voice-search.js"></script>
+</head>
+<body>
+
+  <section id="landing" class="landing">
+    <h1>RoomFit AR</h1>
+    <p class="lead">Поставьте мебель в реальном размере у себя в комнате, прежде чем покупать.</p>
+
+    <h2>Какие разрешения нужны и зачем</h2>
+    <ul class="perms">
+      <li><strong>Камера</strong> — чтобы показать вашу комнату и найти пол. Видео не записывается и не покидает телефон.</li>
+      <li><strong>Датчики движения</strong> — чтобы мебель оставалась на месте, когда вы двигаете телефон.</li>
+      <li><strong>Микрофон (по желанию)</strong> — для голосового поиска. Chrome может отправлять запись голоса
+        в сервис распознавания речи Google. Мы не сохраняем ни аудио, ни текст запроса.
+        Без микрофона можно искать текстом или в каталоге.</li>
+    </ul>
+    <p>Приложение не хранит никаких персональных данных.</p>
+
+    <label class="consent">
+      <input type="checkbox" id="consent"> Я прочитал(а) и согласен(на)
+    </label>
+
+    <div class="steps">
+      <button id="mic-perm-btn" type="button" disabled>1. Разрешить микрофон (необязательно)</button>
+      <p id="mic-status" class="status"></p>
+      <button id="start-btn" type="button" class="primary" disabled>2. Начать AR</button>
+    </div>
+
+    <p id="support-msg" class="warning" hidden></p>
+    <p class="comfort">Пользуйтесь приложением стоя или сидя на месте. Не ходите, глядя только в экран.</p>
+  </section>
+
+  <div id="ar-ui" hidden>
+    <div class="panel hint-panel">
+      <span id="hint">Медленно поводите телефоном, чтобы найти пол.</span>
+      <span id="fps" class="fps"></span>
+    </div>
+
+    <div id="main-panel" class="panel bottom-panel">
+      <div class="search-row">
+        <button id="mic-btn" type="button">🎤 Голосом</button>
+        <select id="lang" aria-label="Язык распознавания">
+          <option value="ru-RU">RU</option>
+          <option value="en-US">EN</option>
+        </select>
+        <form id="search-form">
+          <input id="search-input" type="search" placeholder="напр. белый шкаф до 1.5 м" aria-label="Поиск текстом">
+          <button type="submit">Найти</button>
+        </form>
+      </div>
+      <p id="transcript" class="transcript"></p>
+      <div id="catalog" class="catalog"></div>
+      <div class="controls">
+        <button id="rot-left" type="button" disabled>⟲ 15°</button>
+        <button id="rot-right" type="button" disabled>⟳ 15°</button>
+        <button id="doors-btn" type="button" disabled>Открыть дверцы</button>
+        <button id="done-btn" type="button" class="primary" disabled>Готово →</button>
+      </div>
+    </div>
+
+    <div id="result" class="panel result-panel" hidden>
+      <h2>Итог</h2>
+      <div id="result-info"></div>
+      <label class="space">Ширина свободного места, см:
+        <input id="space-input" type="number" inputmode="numeric" min="0">
+      </label>
+      <p id="fit-msg" class="fit"></p>
+      <p id="stats" class="stats"></p>
+      <div class="controls">
+        <button id="back-btn" type="button">← Назад в комнату</button>
+        <button id="send-btn" type="button" class="primary">Отправить в магазин</button>
+      </div>
+      <p id="send-msg" class="status"></p>
+      <button id="exit-btn" type="button" class="link">Выйти из AR</button>
+    </div>
+  </div>
+
+  <a-scene id="scene"
+           xr-mode-ui="enabled: false"
+           loading-screen="enabled: false"
+           webxr="requiredFeatures: hit-test,local-floor; optionalFeatures: dom-overlay; overlayElement: #ar-ui"
+           furniture-placer="reticle: #reticle"
+           fps-meter="target: #fps">
+    <a-entity light="type: ambient; intensity: 0.9"></a-entity>
+    <a-entity light="type: directional; intensity: 1" position="1 4 2"></a-entity>
+
+    <a-entity id="reticle" visible="false">
+      <a-ring rotation="-90 0 0" radius-inner="0.10" radius-outer="0.13"
+              material="shader: flat; color: #ffffff"></a-ring>
+    </a-entity>
+  </a-scene>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
