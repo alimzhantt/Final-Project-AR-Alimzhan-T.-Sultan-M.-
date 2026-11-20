@@ -4,7 +4,7 @@
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
 
   const CATEGORY_WORDS = {
-    wardrobe: ['шкаф', 'гардероб', 'wardrobe', 'closet'],
+    wardrobe: ['шкаф', 'гардероб', 'шифоньер', 'wardrobe', 'closet', 'armoire'],
     sofa: ['диван', 'софа', 'sofa', 'couch'],
     chair: ['стул', 'кресл', 'chair'],
     table: ['стол', 'table', 'desk'],
