@@ -5,13 +5,14 @@ Brief B2 (Retail) · AR/VR/XR Applications (6B04103 AI Business) · Group AIB-24
 
 **Live:** https://alimzhantt.github.io/Final-Project-AR-Alimzhan-T.-Sultan-M.-/
 **Repository:** https://github.com/alimzhantt/Final-Project-AR-Alimzhan-T.-Sultan-M.-
+**Demo video:** https://drive.google.com/file/d/1QLlnOthHgoPAHFqKSiCx-_I9goSBG5Ht/view?usp=sharing
 
 ## Team and module owners
 
 | Member | ID | Module | Files |
 |---|---|---|---|
-| Alimzhan T. | 241177 | AR placement: hit-test, place/move/rotate, GLTF + animation mixer, FPS meter | `js/placement.js`, `models/` |
-| Sultan M. | 241280 | Voice search (AI), catalog UI, landing/permissions, fallback, result screen | `js/voice-search.js`, `js/app.js`, `js/catalog.js`, `css/style.css` |
+| Alimzhan T. | 241177 | AR placement: hit-test, place/move/rotate, GLTF + animation mixer, FPS meter | `js/placement.js` |
+| Sultan M. | 241280 | Voice search (AI), catalog UI, landing/permissions, fallback, result screen, models | `js/voice-search.js`, `js/app.js`, `js/catalog.js`, `css/style.css`, `models/` |
 
 ## Story (3 states)
 
@@ -23,7 +24,7 @@ Brief B2 (Retail) · AR/VR/XR Applications (6B04103 AI Business) · Group AIB-24
 
 - Speak (voice search, AI feature)
 - Place on the floor (WebXR hit-test + screen tap, XR input)
-- Open wardrobe doors (plays GLTF animation through animation-mixer)
+- Open wardrobe doors (animation-mixer)
 - Extras: move, rotate ±15°, typed search, catalog tap
 
 ## Target device
@@ -49,11 +50,11 @@ or `chrome://inspect` → Port forwarding 8080.
 
 ## Frame rate
 
-| Device | Avg FPS | Min FPS | How measured |
-|---|---|---|---|
-| TODO: phone model | TODO | TODO | built-in FPS meter, shown on the result screen after ~1 min in AR |
+| Device | Avg FPS | How measured |
+|---|---|---|
+| Android phone (model: ___) | 26 | built-in FPS meter, shown on the result screen after ~1 min in AR |
 
-Target: steady 30 fps or more for phone AR.
+Target: 30 fps for phone AR. Measured 26 fps is slightly below target; next step: Draco-compress models and lower the renderer pixel ratio.
 
 ## AI service disclosure
 
@@ -74,11 +75,11 @@ Fallback when the microphone is denied, there is no network or the API is missin
 
 | Asset | Source | Licence |
 |---|---|---|
-| sofa.glb, chair.glb, table.glb, bed.glb | Kenney Furniture Kit — https://kenney.nl/assets/furniture-kit | CC0 |
-| wardrobe.glb (animated, clips `open` / `close`) | Made by the team in Blender | Own work |
+| sofa.glb (loungeSofa), chair.glb, table.glb, bed.glb (bedDouble), wardrobe.glb (bookcaseClosedDoors) | Kenney Furniture Kit — https://kenney.nl/assets/furniture-kit | CC0 |
 
 Each model is under 10 MB and the whole site under 30 MB.
 If a model file is missing, the app shows a box of the real size.
+Known gap: the Kenney wardrobe has no built-in animation, so the "Open doors" button has no visible effect yet.
 
 ## Code sources
 
