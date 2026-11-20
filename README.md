@@ -52,7 +52,7 @@ or `chrome://inspect` → Port forwarding 8080.
 
 | Device | Avg FPS | How measured |
 |---|---|---|
-| Android phone (model: ___) | 26 | built-in FPS meter, shown on the result screen after ~1 min in AR |
+| Android phone (model: M2) | 26 | built-in FPS meter, shown on the result screen after ~1 min in AR |
 
 Target: 30 fps for phone AR. Measured 26 fps is slightly below target; next step: Draco-compress models and lower the renderer pixel ratio.
 
